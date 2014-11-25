@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test Client</title>
+    <script src="Scripts/odatajs-4.0.0-beta-01.js"></script>
+    <script type="text/javascript">
+
+        window.odatajs.oData.request({
+            requestUri: "/odata/$batch",
+            method: "POST",
+            data: {
+                __batchRequests: [
+                     { requestUri: "Products", method: "GET" }
+                ]
+            }
+        }, function (data, response) {
+            console.log(data.__batchResponses[0].data.value);
+        }, undefined, window.odatajs.oData.batch.batchHandler);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
